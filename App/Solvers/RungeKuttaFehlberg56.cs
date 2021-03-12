@@ -64,19 +64,6 @@ namespace App.Solvers
             cCoeficcients[5, 2] = -3544d / 2565d;
             cCoeficcients[5, 3] = 1859d / 4104d;
             cCoeficcients[5, 4] = -11d / 40d;
-
-            int howManyTimesInsertZero = cCoeficcients.GetLength(1) - 1;
-
-
-            for (int i = 0; i < cCoeficcients.GetLength(0); i++)
-            {
-                for (int j = 0; j < howManyTimesInsertZero; j++)
-                {
-                    cCoeficcients[i, j] = 0d;
-                }
-
-                howManyTimesInsertZero -= 1;
-            }
         }
     }
 }
