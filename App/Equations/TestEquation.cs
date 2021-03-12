@@ -12,7 +12,7 @@ namespace App.Equations
             double x = input[0];
             double y = input[1];
 
-            return Math.Pow(x, 2) * Math.Pow(y, 2);
+            return -2 * x * y;
         }
     }
 }

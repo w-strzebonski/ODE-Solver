@@ -39,19 +39,19 @@ namespace App.Solvers
             double k2 = _equation.CalculateResult(shiftedValue);
 
             shiftedValue[0] = input[0] + _step * bCoefficients[2];
-            shiftedValue[1] = input[1] + _step * cCoeficcients[2, 0] * k1 + cCoeficcients[2, 1] * k2;
+            shiftedValue[1] = input[1] + _step * (cCoeficcients[2, 0] * k1 + cCoeficcients[2, 1] * k2);
             double k3 = _equation.CalculateResult(shiftedValue);
 
             shiftedValue[0] = input[0] + _step * bCoefficients[3];
-            shiftedValue[1] = input[1] + _step * cCoeficcients[3, 0] * k1 + cCoeficcients[3, 1] * k2 + cCoeficcients[3, 2] * k3;
+            shiftedValue[1] = input[1] + _step * (cCoeficcients[3, 0] * k1 + cCoeficcients[3, 1] * k2 + cCoeficcients[3, 2] * k3);
             double k4 = _equation.CalculateResult(shiftedValue);
 
             shiftedValue[0] = input[0] + _step * bCoefficients[4];
-            shiftedValue[1] = input[1] + _step * cCoeficcients[4, 0] * k1 + cCoeficcients[4, 1] * k2 + cCoeficcients[4, 2] * k3 + cCoeficcients[4, 3] * k4;
+            shiftedValue[1] = input[1] + _step * (cCoeficcients[4, 0] * k1 + cCoeficcients[4, 1] * k2 + cCoeficcients[4, 2] * k3 + cCoeficcients[4, 3] * k4);
             double k5 = _equation.CalculateResult(shiftedValue);
 
             shiftedValue[0] = input[0] + _step * bCoefficients[5];
-            shiftedValue[1] = input[1] + _step * cCoeficcients[5, 0] * k1 + cCoeficcients[5, 1] * k2 + cCoeficcients[5, 2] * k3 + cCoeficcients[5, 3] * k4 + cCoeficcients[5, 4] * k5;
+            shiftedValue[1] = input[1] + _step * (cCoeficcients[5, 0] * k1 + cCoeficcients[5, 1] * k2 + cCoeficcients[5, 2] * k3 + cCoeficcients[5, 3] * k4 + cCoeficcients[5, 4] * k5);
             double k6 = _equation.CalculateResult(shiftedValue);
 
             return input[1] + _step * (aCoefficients[0] * k1 + aCoefficients[1] * k2 + aCoefficients[2] * k3 + aCoefficients[3] * k4 + aCoefficients[4] * k5 + aCoefficients[5] * k6);
