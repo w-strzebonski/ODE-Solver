@@ -4,12 +4,10 @@ using System.Text;
 
 namespace App.Interfaces
 {
-    interface IRungeKuttaSolver
+    interface IRungeKuttaSolver : ISolver
     {
         int[] aCoefficients { get; }
         int[] bCoefficients { get; }
         int[,] cCoeficcients { get; }
-
-        double Solve(double xi, double yi);
     }
 }
