@@ -6,6 +6,6 @@ namespace App.Interfaces
 {
     interface ISolver
     {
-        double Solve(double xi, double yi);
+        double Solve(double[] input);
     }
 }

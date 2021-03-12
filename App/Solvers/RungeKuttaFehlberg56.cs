@@ -11,8 +11,14 @@ namespace App.Solvers
 
         public double[,] cCoeficcients { get; private set; }
 
-        public RungeKuttaFehlberg56()
+        private IEquation _equation;
+        private double _step;
+
+        public RungeKuttaFehlberg56(IEquation equation, double step)
         {
+            _equation = equation;
+            _step = step;
+
             aCoefficients = new double[6];
             bCoefficients = new double[6];
             cCoeficcients = new double[6, 6];
@@ -22,9 +28,33 @@ namespace App.Solvers
             InitializeCCoefficients();
         }
 
-        public double Solve(double xi, double yi)
+        public double Solve(double[] input)
         {
-            throw new NotImplementedException();
+            double[] shiftedValue = new double[2];
+            
+            double k1 = _equation.CalculateResult(input);
+
+            shiftedValue[0] = input[0] + _step * bCoefficients[1];
+            shiftedValue[1] = input[1] + _step * cCoeficcients[1, 0] * k1;
+            double k2 = _equation.CalculateResult(shiftedValue);
+
+            shiftedValue[0] = input[0] + _step * bCoefficients[2];
+            shiftedValue[1] = input[1] + _step * cCoeficcients[2, 0] * k1 + cCoeficcients[2, 1] * k2;
+            double k3 = _equation.CalculateResult(shiftedValue);
+
+            shiftedValue[0] = input[0] + _step * bCoefficients[3];
+            shiftedValue[1] = input[1] + _step * cCoeficcients[3, 0] * k1 + cCoeficcients[3, 1] * k2 + cCoeficcients[3, 2] * k3;
+            double k4 = _equation.CalculateResult(shiftedValue);
+
+            shiftedValue[0] = input[0] + _step * bCoefficients[4];
+            shiftedValue[1] = input[1] + _step * cCoeficcients[4, 0] * k1 + cCoeficcients[4, 1] * k2 + cCoeficcients[4, 2] * k3 + cCoeficcients[4, 3] * k4;
+            double k5 = _equation.CalculateResult(shiftedValue);
+
+            shiftedValue[0] = input[0] + _step * bCoefficients[5];
+            shiftedValue[1] = input[1] + _step * cCoeficcients[5, 0] * k1 + cCoeficcients[5, 1] * k2 + cCoeficcients[5, 2] * k3 + cCoeficcients[5, 3] * k4 + cCoeficcients[5, 4] * k5;
+            double k6 = _equation.CalculateResult(shiftedValue);
+
+            return input[1] + _step * (aCoefficients[0] * k1 + aCoefficients[1] * k2 + aCoefficients[2] * k3 + aCoefficients[3] * k4 + aCoefficients[4] * k5 + aCoefficients[5] * k6);
         }
 
         private void InitializeACoefficients()

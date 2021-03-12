@@ -1,4 +1,5 @@
-﻿using App.Solvers;
+﻿using App.Equations;
+using App.Solvers;
 using System;
 
 namespace App
@@ -7,7 +8,11 @@ namespace App
     {
         static void Main(string[] args)
         {
-            var solver = new RungeKuttaFehlberg56();
+            var step = 0.0001;
+            var equation = new TestEquation();
+            var solver = new RungeKuttaFehlberg56(equation, step);
+
+
         }
     }
 }
