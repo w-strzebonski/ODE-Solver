@@ -6,8 +6,8 @@ namespace App.Interfaces
 {
     interface IRungeKuttaSolver : ISolver
     {
-        int[] aCoefficients { get; }
-        int[] bCoefficients { get; }
-        int[,] cCoeficcients { get; }
+        double[] aCoefficients { get; }
+        double[] bCoefficients { get; }
+        double[,] cCoeficcients { get; }
     }
 }
