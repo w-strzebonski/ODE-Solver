@@ -13,9 +13,9 @@ namespace App
         {
             var step = 0.0001;
             var from = 0d;
-            var to = 3d;
+            var to = 10d;
 
-            var equations = new TestOneEquationAsSystem();
+            var equations = new TestSystemEquation();
             var solver = new RungeKuttaFehlberg56(equations, step);
 
             var resolver = new MainResolver(solver, from, to, step);
@@ -23,7 +23,8 @@ namespace App
             double[] initialConditions = new double[equations.Equations.Length + 1];
 
             initialConditions[0] = from;
-            initialConditions[1] = 2d;
+            initialConditions[1] = 0d;
+            initialConditions[2] = 1d;
 
             resolver.Execute(initialConditions);
 
