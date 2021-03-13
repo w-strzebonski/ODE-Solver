@@ -9,12 +9,12 @@ namespace App
     {
         static void Main(string[] args)
         {
-            var step = 0.00001;
+            var step = 0.0001;
             var equation = new TestEquation();
             var solver = new RungeKuttaFehlberg56(equation, step);
 
             var from = 0d;
-            var to = 3d;
+            var to = 2d;
             var numberOfSamples = Convert.ToInt32(Math.Abs(from - to) / step);
 
             double[] data = new double[numberOfSamples];
@@ -22,7 +22,7 @@ namespace App
             double[] tempData = new double[2];
 
             double x = from;
-            data[0] = 2;
+            data[0] = 0;
 
             for (int i = 0; i < data.Length - 1; i++)
             {
@@ -33,7 +33,7 @@ namespace App
                 dataAsString[i] = $"{tempData[0]}, {tempData[1]}";
 
                 data[i + 1] = solver.Solve(tempData);
-                x += step;
+                x = Math.Round(x + step, 5);
             }
 
             File.WriteAllLines(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacji.txt", dataAsString);

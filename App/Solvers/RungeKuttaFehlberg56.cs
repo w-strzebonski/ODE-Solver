@@ -28,7 +28,7 @@ namespace App.Solvers
             InitializeCCoefficients();
         }
 
-        public double Solve(double[] input)
+        public virtual double Solve(double[] input)
         {
             double[] shiftedValue = new double[2];
             

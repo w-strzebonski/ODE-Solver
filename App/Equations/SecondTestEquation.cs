@@ -5,14 +5,16 @@ using System.Text;
 
 namespace App.Equations
 {
-    class TestEquation : IEquation
+    class SecondTestEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {
             double x = input[0];
-            double y = input[1];
+            double y1 = input[1];
+            double y2 = input[2];
 
-            return Math.Pow(x, 2) - Math.Pow(y, 2);
+            //dy2/dx = ...
+            return Math.Exp(x) * (Math.Pow(y1, 2) + y1 * y2) - 2 * Math.Exp(-x);
         }
     }
 }
