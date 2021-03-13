@@ -11,12 +11,12 @@ namespace App.Solvers
 
         public double[,] cCoeficcients { get; private set; }
 
-        private IEquation _equation;
+        private ISystemDifferentialEquations _systemEquations;
         private double _step;
 
-        public RungeKuttaFehlberg56(IEquation equation, double step)
+        public RungeKuttaFehlberg56(ISystemDifferentialEquations equations, double step)
         {
-            _equation = equation;
+            _systemEquations = equations;
             _step = step;
 
             aCoefficients = new double[6];
@@ -28,33 +28,28 @@ namespace App.Solvers
             InitializeCCoefficients();
         }
 
-        public virtual double Solve(double[] input)
+        public double[] Solve(double[] input)
         {
-            double[] shiftedValue = new double[2];
+            double[] shiftedValue;
             
-            double k1 = _equation.CalculateResult(input);
+            double[] k1 = _systemEquations.Calculate(input);
 
-            shiftedValue[0] = input[0] + _step * bCoefficients[1];
-            shiftedValue[1] = input[1] + _step * cCoeficcients[1, 0] * k1;
-            double k2 = _equation.CalculateResult(shiftedValue);
+            shiftedValue = PrepareShiftedValuesForK2(input, k1);
+            double[] k2 = _systemEquations.Calculate(shiftedValue);
 
-            shiftedValue[0] = input[0] + _step * bCoefficients[2];
-            shiftedValue[1] = input[1] + _step * (cCoeficcients[2, 0] * k1 + cCoeficcients[2, 1] * k2);
-            double k3 = _equation.CalculateResult(shiftedValue);
+            shiftedValue = PrepareShiftedValuesForK3(input, k1, k2);
+            double[] k3 = _systemEquations.Calculate(shiftedValue);
 
-            shiftedValue[0] = input[0] + _step * bCoefficients[3];
-            shiftedValue[1] = input[1] + _step * (cCoeficcients[3, 0] * k1 + cCoeficcients[3, 1] * k2 + cCoeficcients[3, 2] * k3);
-            double k4 = _equation.CalculateResult(shiftedValue);
+            shiftedValue = PrepareShiftedValuesForK4(input, k1, k2, k3);
+            double[] k4 = _systemEquations.Calculate(shiftedValue);
 
-            shiftedValue[0] = input[0] + _step * bCoefficients[4];
-            shiftedValue[1] = input[1] + _step * (cCoeficcients[4, 0] * k1 + cCoeficcients[4, 1] * k2 + cCoeficcients[4, 2] * k3 + cCoeficcients[4, 3] * k4);
-            double k5 = _equation.CalculateResult(shiftedValue);
+            shiftedValue = PrepareShiftedValuesForK5(input, k1, k2, k3, k4);
+            double[] k5 = _systemEquations.Calculate(shiftedValue);
 
-            shiftedValue[0] = input[0] + _step * bCoefficients[5];
-            shiftedValue[1] = input[1] + _step * (cCoeficcients[5, 0] * k1 + cCoeficcients[5, 1] * k2 + cCoeficcients[5, 2] * k3 + cCoeficcients[5, 3] * k4 + cCoeficcients[5, 4] * k5);
-            double k6 = _equation.CalculateResult(shiftedValue);
+            shiftedValue = PrepareShiftedValuesForK6(input, k1, k2, k3, k4, k5);
+            double[] k6 = _systemEquations.Calculate(shiftedValue);
 
-            return input[1] + _step * (aCoefficients[0] * k1 + aCoefficients[1] * k2 + aCoefficients[2] * k3 + aCoefficients[3] * k4 + aCoefficients[4] * k5 + aCoefficients[5] * k6);
+            return ReturnCalculatedValues(input, k1, k2, k3, k4, k5, k6);
         }
 
         private void InitializeACoefficients()
@@ -94,6 +89,90 @@ namespace App.Solvers
             cCoeficcients[5, 2] = -3544d / 2565d;
             cCoeficcients[5, 3] = 1859d / 4104d;
             cCoeficcients[5, 4] = -11d / 40d;
+        }
+
+        private double[] PrepareShiftedValuesForK2(double[] input, double[] k1)
+        {
+            double[] result = new double[input.Length];
+
+            result[0] = input[0] + _step * bCoefficients[1];
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                result[i] = input[i] + _step * cCoeficcients[1, 0] * k1[i];
+            }
+
+            return result;
+        }
+
+        private double[] PrepareShiftedValuesForK3(double[] input, double[] k1, double[] k2)
+        {
+            double[] result = new double[input.Length];
+
+            result[0] = input[0] + _step * bCoefficients[2];
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                result[i] = input[i] + _step * (cCoeficcients[2, 0] * k1[i] + cCoeficcients[2, 1] * k2[i]);
+            }
+
+            return result;
+        }
+
+        private double[] PrepareShiftedValuesForK4(double[] input, double[] k1, double[] k2, double[] k3)
+        {
+            double[] result = new double[input.Length];
+
+            result[0] = input[0] + _step * bCoefficients[3];
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                result[i] = input[i] + _step * (cCoeficcients[3, 0] * k1[i] + cCoeficcients[3, 1] * k2[i] + cCoeficcients[3, 2] * k3[i]);
+            }
+
+            return result;
+        }
+
+        private double[] PrepareShiftedValuesForK5(double[] input, double[] k1, double[] k2, double[] k3, double[] k4)
+        {
+            double[] result = new double[input.Length];
+
+            result[0] = input[0] + _step * bCoefficients[4];
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                result[i] = input[i] + _step * (cCoeficcients[4, 0] * k1[i] + cCoeficcients[4, 1] * k2[i] + cCoeficcients[4, 2] * k3[i] + cCoeficcients[4, 3] * k4[i]);
+            }
+
+            return result;
+        }
+
+        private double[] PrepareShiftedValuesForK6(double[] input, double[] k1, double[] k2, double[] k3, double[] k4, double[] k5)
+        {
+            double[] result = new double[input.Length];
+
+            result[0] = input[0] + _step * bCoefficients[5];
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                result[i] = input[i] + _step * (cCoeficcients[5, 0] * k1[i] + cCoeficcients[5, 1] * k2[i] + cCoeficcients[5, 2] * k3[i] + cCoeficcients[5, 3] * k4[i] + cCoeficcients[5, 4] * k5[i]);
+            }
+
+            return result;
+        }
+
+        private double[] ReturnCalculatedValues(double[] input, double[] k1, double[] k2, double[] k3, double[] k4, double[] k5, double[] k6)
+        {
+            double[] result = new double[input.Length];
+
+            result[0] = input[0];
+
+            for (int i = 1; i < result.Length; i++)
+            {
+                result[i] = input[i] + _step * (aCoefficients[0] * k1[i] + aCoefficients[1] * k2[i] + aCoefficients[2] * k3[i] + aCoefficients[3] * k4[i] + aCoefficients[4] * k5[i] + aCoefficients[5] * k6[i]);
+            }
+
+            return result;
         }
     }
 }
