@@ -15,7 +15,7 @@ namespace App.Models
 
         public double StopBoundary { get; private set; }
 
-        public IDictionary<double, double> Data { get; private set; }
+        public (double, double)[] Data { get; private set; }
 
         public MainResolver(ISolver solver, double startBoundary, double stopBoundary, double step)
         {
@@ -28,7 +28,7 @@ namespace App.Models
         public void Execute(double[] initialConditions)
         {
             int numberOfSamples = Convert.ToInt32(Math.Abs(StopBoundary - StartBoundary) / Step);
-            Data = new Dictionary<double, double>();
+            Data = new (double, double)[numberOfSamples];
 
             double[] tempData = new double[DifferentialSolver.SystemDifferentialEquations.Equations.Length + 1];
 
@@ -39,11 +39,14 @@ namespace App.Models
 
             double x = StartBoundary;
 
-            for (int i = 0; i < numberOfSamples - 1; i++)
+            for (int i = 0; i < numberOfSamples; i++)
             {
-                Data.Add(tempData[0], tempData[1]);
+                Data[i].Item1 = tempData[0];
+                Data[i].Item2 = tempData[1];
+
                 tempData = DifferentialSolver.Solve(tempData);
-                tempData[0] = Math.Round(x + Step, 5);
+
+                tempData[0] = Math.Round(Data[i].Item1 + Step, 5);
             }
         }
     }

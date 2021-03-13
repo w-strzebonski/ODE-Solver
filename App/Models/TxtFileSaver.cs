@@ -34,12 +34,13 @@ namespace App.Models
 
         private IEnumerable<string> TransferDataToStringLines()
         {
-            string[] lines = new string[_resolver.Data.Count];
+            string[] lines = new string[_resolver.Data.Length];
             int counter = 0;
 
-            foreach (var item in _resolver.Data)
+            foreach (var data in _resolver.Data)
             {
-                lines[counter] = $"{item.Key}, {item.Value}";
+                lines[counter] = $"{data.Item1}, {data.Item2}";
+                counter++;
             }
 
             return lines;

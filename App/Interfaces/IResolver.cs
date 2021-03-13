@@ -10,7 +10,7 @@ namespace App.Interfaces
         double Step { get; }
         double StartBoundary { get; }
         double StopBoundary { get; }
-        IDictionary<double, double> Data { get; }
+        (double, double)[] Data { get; }
 
         void Execute(double[] initialConditions);
     }
