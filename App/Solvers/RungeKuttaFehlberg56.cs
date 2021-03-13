@@ -11,12 +11,12 @@ namespace App.Solvers
 
         public double[,] cCoeficcients { get; private set; }
 
-        private ISystemDifferentialEquations _systemEquations;
+        public ISystemDifferentialEquations SystemDifferentialEquations { get; private set; }
         private double _step;
 
         public RungeKuttaFehlberg56(ISystemDifferentialEquations equations, double step)
         {
-            _systemEquations = equations;
+            SystemDifferentialEquations = equations;
             _step = step;
 
             aCoefficients = new double[6];
@@ -32,22 +32,22 @@ namespace App.Solvers
         {
             double[] shiftedValue;
             
-            double[] k1 = _systemEquations.Calculate(input);
+            double[] k1 = SystemDifferentialEquations.Calculate(input);
 
             shiftedValue = PrepareShiftedValuesForK2(input, k1);
-            double[] k2 = _systemEquations.Calculate(shiftedValue);
+            double[] k2 = SystemDifferentialEquations.Calculate(shiftedValue);
 
             shiftedValue = PrepareShiftedValuesForK3(input, k1, k2);
-            double[] k3 = _systemEquations.Calculate(shiftedValue);
+            double[] k3 = SystemDifferentialEquations.Calculate(shiftedValue);
 
             shiftedValue = PrepareShiftedValuesForK4(input, k1, k2, k3);
-            double[] k4 = _systemEquations.Calculate(shiftedValue);
+            double[] k4 = SystemDifferentialEquations.Calculate(shiftedValue);
 
             shiftedValue = PrepareShiftedValuesForK5(input, k1, k2, k3, k4);
-            double[] k5 = _systemEquations.Calculate(shiftedValue);
+            double[] k5 = SystemDifferentialEquations.Calculate(shiftedValue);
 
             shiftedValue = PrepareShiftedValuesForK6(input, k1, k2, k3, k4, k5);
-            double[] k6 = _systemEquations.Calculate(shiftedValue);
+            double[] k6 = SystemDifferentialEquations.Calculate(shiftedValue);
 
             return ReturnCalculatedValues(input, k1, k2, k3, k4, k5, k6);
         }
