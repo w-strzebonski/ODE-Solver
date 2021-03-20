@@ -8,12 +8,16 @@ namespace App.Models
 {
     class TxtFileSaver
     {
-        private IResolver _resolver;
+        private IResolver _numericalResolver;
+        private IResolver _exactResolver;
+        private IErrorCalculator _errorCalculator;
         private string _path;
 
-        public TxtFileSaver(IResolver resolver, string path)
+        public TxtFileSaver(IResolver numericalResolver, IResolver exactResolver, IErrorCalculator errorCalculator, string path)
         {
-            _resolver = resolver;
+            _numericalResolver = numericalResolver;
+            _exactResolver = exactResolver;
+            _errorCalculator = errorCalculator;
             _path = path;
         }
 
@@ -34,18 +38,14 @@ namespace App.Models
 
         private IEnumerable<string> TransferDataToStringLines()
         {
-            string[] lines = new string[_resolver.Data.Length];
-            int counter = 0;
+            string[] lines = new string[_numericalResolver.Data.Length];
 
-            foreach (var data in _resolver.Data)
+            for (int i = 0; i < lines.Length; i++)
             {
-                lines[counter] = $"{data.Item1}, {data.Item2}";
-                counter++;
+                lines[i] = $"{_numericalResolver.Data[i].Item1}, {_numericalResolver.Data[i].Item2}, {_exactResolver.Data[i].Item2}, {_errorCalculator.Data[i].Item2}";
             }
 
             return lines;
         }
-
-        //Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacji.txt"
     }
 }

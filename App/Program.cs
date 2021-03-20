@@ -34,14 +34,10 @@ namespace App
             errorCalculator.Calculate();
 
             var savePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacji.txt";
-            var savePathExact = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacjidokladne.txt";
-            var savePathError = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacjiblad.txt";
 
-            var resultWriter = new TxtFileSaver(numericalResolver, savePath);
-            var resultWriterExact = new TxtFileSaver(exactResolver, savePathExact);
+            var resultWriter = new TxtFileSaver(numericalResolver, exactResolver, errorCalculator, savePath);
 
             resultWriter.Execute();
-            resultWriterExact.Execute();
         }
     }
 }
