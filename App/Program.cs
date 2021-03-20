@@ -33,12 +33,21 @@ namespace App
 
             var savePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacji.txt";
             var savePathExact = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacjidokladne.txt";
+            var savePathError = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacjiblad.txt";
 
             var resultWriter = new TxtFileSaver(numericalResolver, savePath);
             var resultWriterExact = new TxtFileSaver(exactResolver, savePathExact);
-            
+
+            string[] error = new string[numericalResolver.Data.Length];
+
+            for (int i = 0; i < error.Length; i++)
+            {
+                error[i] = (numericalResolver.Data[i].Item2 - exactResolver.Data[i].Item2).ToString();
+            }
+
             resultWriter.Execute();
             resultWriterExact.Execute();
+            File.WriteAllLines(savePathError, error);
         }
     }
 }
