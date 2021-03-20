@@ -6,7 +6,6 @@ namespace App.Interfaces
 {
     interface IResolver
     {
-        ISolver DifferentialSolver { get; }
         double Step { get; }
         double StartBoundary { get; }
         double StopBoundary { get; }

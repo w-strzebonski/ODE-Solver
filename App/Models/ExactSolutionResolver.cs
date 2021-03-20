@@ -5,9 +5,9 @@ using System.Text;
 
 namespace App.Models
 {
-    class MainResolver : INumericalResolver
+    class ExactSolutionResolver : IExactSolutionResolver
     {
-        public ISolver DifferentialSolver { get; private set; }
+        public IEquation ExactSolutionEquation { get; private set; }
 
         public double Step { get; private set; }
 
@@ -17,9 +17,9 @@ namespace App.Models
 
         public (double, double)[] Data { get; private set; }
 
-        public MainResolver(ISolver solver, double startBoundary, double stopBoundary, double step)
+        public ExactSolutionResolver(IEquation exactSolutionEquaiton, double startBoundary, double stopBoundary, double step)
         {
-            DifferentialSolver = solver;
+            ExactSolutionEquation = exactSolutionEquaiton;
             StartBoundary = startBoundary;
             StopBoundary = stopBoundary;
             Step = step;
@@ -30,21 +30,13 @@ namespace App.Models
             int numberOfSamples = Convert.ToInt32(Math.Abs(StopBoundary - StartBoundary) / Step);
             Data = new (double, double)[numberOfSamples];
 
-            double[] tempData = new double[DifferentialSolver.SystemDifferentialEquations.Equations.Length + 1];
-
-            for (int i = 0; i < initialConditions.Length; i++)
-            {
-                tempData[i] = initialConditions[i];
-            }
-
-            double x = StartBoundary;
+            double[] tempData = new double[1];
+            tempData[0] = StartBoundary;
 
             for (int i = 0; i < numberOfSamples; i++)
             {
                 Data[i].Item1 = tempData[0];
-                Data[i].Item2 = tempData[1];
-
-                tempData = DifferentialSolver.Solve(tempData);
+                Data[i].Item2 = ExactSolutionEquation.CalculateResult(tempData);
 
                 tempData[0] = Math.Round(Data[i].Item1 + Step, 5);
             }
