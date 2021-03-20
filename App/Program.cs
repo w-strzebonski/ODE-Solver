@@ -11,7 +11,7 @@ namespace App
     {
         static void Main(string[] args)
         {
-            var step = 0.0001;
+            var step = 0.1;
             var from = 0d;
             var to = 10d;
 
