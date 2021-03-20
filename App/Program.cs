@@ -22,6 +22,7 @@ namespace App
 
             var numericalResolver = new MainResolver(solver, from, to, step);
             var exactResolver = new ExactSolutionResolver(exacEquation, from, to, step);
+            var errorCalculator = new NumericalExactErrorCalculator(numericalResolver, exactResolver);
 
             double[] initialConditions = new double[equations.Equations.Length + 1];
 
@@ -30,6 +31,7 @@ namespace App
 
             numericalResolver.Execute(initialConditions);
             exactResolver.Execute(initialConditions);
+            errorCalculator.Calculate();
 
             var savePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacji.txt";
             var savePathExact = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacjidokladne.txt";
@@ -38,16 +40,8 @@ namespace App
             var resultWriter = new TxtFileSaver(numericalResolver, savePath);
             var resultWriterExact = new TxtFileSaver(exactResolver, savePathExact);
 
-            string[] error = new string[numericalResolver.Data.Length];
-
-            for (int i = 0; i < error.Length; i++)
-            {
-                error[i] = (numericalResolver.Data[i].Item2 - exactResolver.Data[i].Item2).ToString();
-            }
-
             resultWriter.Execute();
             resultWriterExact.Execute();
-            File.WriteAllLines(savePathError, error);
         }
     }
 }
