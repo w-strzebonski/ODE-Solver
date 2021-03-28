@@ -14,10 +14,10 @@ namespace App
         {
             var step = 0.0001;
             var from = 0d;
-            var to = 3d;
+            var to = 1d;
 
-            var equations = new TestOneEquationAsSystem();
-            var exacEquation = new WolframExactEquation();
+            var equations = new FourthOrderSystemEquation();
+            var exacEquation = new FourthOrderExactEquation();
             var solver = new RungeKuttaFehlberg56(equations, step);
 
             var numericalResolver = new MainResolver(solver, from, to, step);
@@ -27,7 +27,10 @@ namespace App
             double[] initialConditions = new double[equations.Equations.Length + 1];
 
             initialConditions[0] = from;
-            initialConditions[1] = 2d;
+            initialConditions[1] = 0d;
+            initialConditions[2] = 0d;
+            initialConditions[3] = 4d;
+            initialConditions[4] = 0d;
 
             numericalResolver.Execute(initialConditions);
             exactResolver.Execute(initialConditions);
