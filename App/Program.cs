@@ -13,15 +13,15 @@ namespace App
         {
             ConsoleDisplayer.DisplayWelcomeMessage();
 
-            var solvingSystem = SolvingSystemDataInitializer.Execute();
+            var systemData = SolvingSystemDataInitializer.Execute();
             var odeFatory = OdeSystemFactoryGenerator.Generate();
 
             var systemOfEquations = odeFatory.CreateSystemDifferentialEquations();
             var exactSolutionEquation = odeFatory.CreateExactSolutionEquation();
-            var initialConditions = odeFatory.CreateInitialConditions(solvingSystem.StartingPoint);
+            var initialConditions = odeFatory.CreateInitialConditions(systemData.StartingPoint);
 
-            var solver = new RungeKuttaFehlberg56(systemOfEquations, solvingSystem.Step);
-            var calculationProcessor = new CalculationProcessor(solver, exactSolutionEquation, solvingSystem);
+            var solver = new RungeKuttaFehlberg56(systemOfEquations, systemData.Step);
+            var calculationProcessor = new CalculationProcessor(solver, exactSolutionEquation, systemData);
 
             calculationProcessor.StartCalculations(initialConditions);
 
