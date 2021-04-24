@@ -1,9 +1,6 @@
 ﻿using App.Equations.ExactSolutionEquations;
 using App.Interfaces;
 using App.SystemDifferentialEquations;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace App.Factories
 {
