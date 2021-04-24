@@ -5,7 +5,7 @@ using System.Text;
 
 namespace App.Equations
 {
-    class SecondTestEquation : IEquation
+    class SecondOrderFinalEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {

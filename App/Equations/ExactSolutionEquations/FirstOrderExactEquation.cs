@@ -5,7 +5,7 @@ using System.Text;
 
 namespace App.Equations.ExactSolutionEquations
 {
-    class WolframExactEquation : IEquation
+    class FirstOrderExactEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {

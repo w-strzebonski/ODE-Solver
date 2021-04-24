@@ -1,36 +1,34 @@
-﻿using App.Interfaces;
+﻿using App.Equations;
+using App.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace App.Equations
+namespace App.SystemDifferentialEquations
 {
-    class TestSystemEquation : ISystemDifferentialEquations
+    class FirstOrderSystemEquation : ISystemDifferentialEquations
     {
         public IEquation[] Equations { get; private set; }
 
-        public TestSystemEquation()
+        public FirstOrderSystemEquation()
         {
             PrepareEquations();
         }
 
         public double[] Calculate(double[] input)
         {
-            double[] result = new double[3];
+            double[] result = new double[2];
 
             result[0] = input[0];
             result[1] = Equations[0].CalculateResult(input);
-            result[2] = Equations[1].CalculateResult(input);
 
             return result;
         }
-
         private void PrepareEquations()
         {
-            Equations = new IEquation[2];
+            Equations = new IEquation[1];
 
-            Equations[0] = new FirstTestEquation();
-            Equations[1] = new SecondTestEquation();
+            Equations[0] = new FirstOrderFinalEquation();
         }
     }
 }

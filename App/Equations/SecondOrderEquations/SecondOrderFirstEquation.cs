@@ -5,14 +5,12 @@ using System.Text;
 
 namespace App.Equations
 {
-    class WolframEquation : IEquation
+    class SecondOrderFirstEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {
-            double x = input[0];
-            double y = input[1];
-
-            return -2 * x * y;
+            //dy1/dx = y2
+            return input[2];
         }
     }
 }

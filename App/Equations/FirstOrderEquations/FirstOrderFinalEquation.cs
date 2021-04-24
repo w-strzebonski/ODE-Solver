@@ -5,12 +5,14 @@ using System.Text;
 
 namespace App.Equations
 {
-    class FirstTestEquation : IEquation
+    class FirstOrderFinalEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {
-            //dy1/dx = y2
-            return input[2];
+            double x = input[0];
+            double y = input[1];
+
+            return -2 * x * y;
         }
     }
 }
