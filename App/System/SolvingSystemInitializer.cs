@@ -6,7 +6,7 @@ namespace App.System
 {
     static class SolvingSystemInitializer
     {
-        static SolvingSystem Execute()
+        public static SolvingSystem Execute()
         {
             var startingPointInput = ReadInformationFromUser("Insert starting point");
             var endingPointInput = ReadInformationFromUser("Insert ending point");

@@ -2,6 +2,7 @@
 using App.Equations.ExactSolutionEquations;
 using App.Models;
 using App.Solvers;
+using App.System;
 using App.SystemDifferentialEquations;
 using System;
 using System.IO;
@@ -12,6 +13,9 @@ namespace App
     {
         static void Main(string[] args)
         {
+            ISolvingSystem solvingSystem = SolvingSystemInitializer.Execute();
+            
+            
             var step = 0.0001;
             var from = 0d;
             var to = 1d;
