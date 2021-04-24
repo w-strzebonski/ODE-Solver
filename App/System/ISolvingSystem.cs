@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App.System
 {
-    interface ISystem
+    interface ISolvingSystem
     {
         public double StartingPoint { get; }
         public double EndingPoint { get; }
