@@ -17,9 +17,7 @@ namespace App.Helpers
 
         public static CsvFileHelper Create()
         {
-            Console.WriteLine("Please enter the full path where the csv file from the calculation will be saved");
-            Console.WriteLine("If you don't enter the path, the file will be saved to the desktop");
-            Console.WriteLine("> ");
+            DisplayCreationMessage();
 
             var path = Console.ReadLine();
 
@@ -52,16 +50,22 @@ namespace App.Helpers
 
         public void DisplaySavingResultMessageAndExit()
         {
+            int statusCode;
+            string message;
+
             if (string.IsNullOrEmpty(_exceptionMessage))
             {
-                Console.WriteLine("The calculations were correctly saved in the indicated location! Press any key to exit...");
-                Environment.Exit(0);
+                message = "The calculations were correctly saved in the indicated location! Press any key to exit...";
+                statusCode = 0;
             }
             else
             {
-                Console.WriteLine($"Error! {_exceptionMessage}");
-                Environment.Exit(-1);
+                message = $"Error! {_exceptionMessage}";
+                statusCode = -1;
             }
+
+            Console.WriteLine(message);
+            Environment.Exit(statusCode);
         }
 
         private CsvFileHelper()
@@ -72,6 +76,13 @@ namespace App.Helpers
         private CsvFileHelper(string path)
         {
             Path = $"{path}\\{_fileName}";
+        }
+
+        private static void DisplayCreationMessage()
+        {
+            Console.WriteLine("Please enter the full path where the csv file from the calculation will be saved");
+            Console.WriteLine("If you don't enter the path, the file will be saved to the desktop");
+            Console.WriteLine("> ");
         }
     }
 }
