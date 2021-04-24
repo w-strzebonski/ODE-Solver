@@ -6,21 +6,21 @@ namespace App.System
     {
         public static SolvingSystemData Execute()
         {
-            var startingPointInput = ReadInformationFromUser("Insert starting point value");
-            var endingPointInput = ReadInformationFromUser("Insert ending point value");
-            var stepInput = ReadInformationFromUser("Insert step value");
+            var startingPointInput = ReadInformationFromUser("Insert the beginning of calculation interval");
+            var endingPointInput = ReadInformationFromUser("Insert the end of calculation interval");
+            var stepInput = ReadInformationFromUser("Insert the solution step value");
 
             if (!double.TryParse(startingPointInput, out var startingPoint))
-                DisplayMessageAndExit("Entered value of Starting Point must be a floating-point number");
+                DisplayMessageAndExit("Entered value of the beginning of calculation interval must be a floating-point number");
 
             if (!double.TryParse(endingPointInput, out var endingPoint))
-                DisplayMessageAndExit("Entered value of Starting Point must be a floating-point number");
+                DisplayMessageAndExit("Entered value of the end of calculation must be a floating-point number");
 
             if (!double.TryParse(stepInput, out var step) && step <= 0)
-                DisplayMessageAndExit("Entered value of Starting Point must be a floating-point number and greater than zero");
+                DisplayMessageAndExit("Entered value of the solution step must be a floating-point number and greater than zero");
 
             if (startingPoint > endingPoint)
-                DisplayMessageAndExit("Entered value of Starting Point must be lesser than Ending Point");
+                DisplayMessageAndExit("Entered value of beginning of calculation must be lesser than the end of calculation interval");
 
             return new SolvingSystemData(startingPoint, endingPoint, step);
         }
@@ -29,7 +29,11 @@ namespace App.System
         {
             Console.WriteLine(displayMessage);
             Console.Write("> ");
-            return Console.ReadLine();
+
+            var input = Console.ReadLine();
+            Console.WriteLine();
+
+            return input;
         }
         
         private static void DisplayMessageAndExit(string message)
