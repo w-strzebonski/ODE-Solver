@@ -1,4 +1,4 @@
-﻿namespace App.Interfaces
+﻿namespace App.Solvers
 {
     interface IRungeKuttaSolver : ISolver
     {

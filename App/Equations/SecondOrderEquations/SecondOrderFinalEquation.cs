@@ -1,7 +1,6 @@
-﻿using App.Interfaces;
-using System;
+﻿using System;
 
-namespace App.Equations
+namespace App.Equations.SecondOrderEquations
 {
     class SecondOrderFinalEquation : IEquation
     {

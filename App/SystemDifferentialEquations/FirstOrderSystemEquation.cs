@@ -1,5 +1,5 @@
 ﻿using App.Equations;
-using App.Interfaces;
+using App.Equations.FirstOrderEquations;
 
 namespace App.SystemDifferentialEquations
 {

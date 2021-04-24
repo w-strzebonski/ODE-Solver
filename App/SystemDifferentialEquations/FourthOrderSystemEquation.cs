@@ -1,5 +1,5 @@
-﻿using App.Equations.FourthOrderEquations;
-using App.Interfaces;
+﻿using App.Equations;
+using App.Equations.FourthOrderEquations;
 
 namespace App.SystemDifferentialEquations
 {

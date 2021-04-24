@@ -1,6 +1,6 @@
-﻿using App.Interfaces;
+﻿using App.Solvers;
 
-namespace App.Solvers
+namespace App.SystemDifferentialEquations
 {
     class RungeKuttaFehlberg56 : IRungeKuttaSolver
     {

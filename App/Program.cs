@@ -2,7 +2,7 @@
 using App.Factories;
 using App.Helpers;
 using App.Models;
-using App.Solvers;
+using App.SystemDifferentialEquations;
 using App.System;
 
 namespace App

@@ -1,4 +1,5 @@
-﻿using App.Interfaces;
+﻿using App.Equations;
+using App.SystemDifferentialEquations;
 
 namespace App.Factories
 {

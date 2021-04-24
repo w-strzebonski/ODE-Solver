@@ -1,4 +1,6 @@
-﻿namespace App.Interfaces
+﻿using App.SystemDifferentialEquations;
+
+namespace App.Solvers
 {
     interface ISolver
     {

@@ -1,4 +1,5 @@
-﻿using App.Interfaces;
+﻿using App.Equations.SecondOrderEquations;
+using App.SystemDifferentialEquations;
 
 namespace App.Equations
 {

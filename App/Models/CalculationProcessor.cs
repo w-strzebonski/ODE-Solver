@@ -1,6 +1,7 @@
-﻿using App.Interfaces;
-using App.System;
+﻿using App.System;
 using System;
+using App.Solvers;
+using App.Equations;
 
 namespace App.Models
 {

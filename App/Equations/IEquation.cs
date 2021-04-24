@@ -1,4 +1,4 @@
-﻿namespace App.Interfaces
+﻿namespace App.Equations
 {
     interface IEquation
     {

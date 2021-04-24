@@ -1,4 +1,4 @@
-﻿using App.Interfaces;
+﻿using App.SystemDifferentialEquations;
 using System;
 
 namespace App.Equations.FourthOrderEquations

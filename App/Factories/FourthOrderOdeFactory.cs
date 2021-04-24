@@ -1,5 +1,5 @@
-﻿using App.Equations.ExactSolutionEquations;
-using App.Interfaces;
+﻿using App.Equations;
+using App.Equations.ExactSolutionEquations;
 using App.SystemDifferentialEquations;
 
 namespace App.Factories
