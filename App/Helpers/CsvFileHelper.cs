@@ -18,8 +18,9 @@ namespace App.Helpers
         public static CsvFileHelper Create()
         {
             DisplayCreationMessage();
-
+           
             var path = Console.ReadLine();
+            Console.WriteLine();
 
             if (string.IsNullOrEmpty(path))
                 return new CsvFileHelper();
