@@ -14,11 +14,11 @@ namespace App
             ConsoleDisplayer.DisplayWelcomeMessage();
 
             var systemData = SolvingSystemDataInitializer.Execute();
-            var odeFatory = OdeSystemFactoryGenerator.Generate();
+            var odeFactory = OdeSystemFactoryGenerator.Generate();
 
-            var systemOfEquations = odeFatory.CreateSystemDifferentialEquations();
-            var exactSolutionEquation = odeFatory.CreateExactSolutionEquation();
-            var initialConditions = odeFatory.CreateInitialConditions(systemData.StartingPoint);
+            var systemOfEquations = odeFactory.CreateSystemDifferentialEquations();
+            var exactSolutionEquation = odeFactory.CreateExactSolutionEquation();
+            var initialConditions = odeFactory.CreateInitialConditions(systemData.StartingPoint);
 
             var solver = new RungeKuttaFehlberg56(systemOfEquations, systemData.Step);
             var calculationProcessor = new CalculationProcessor(solver, exactSolutionEquation, systemData);
