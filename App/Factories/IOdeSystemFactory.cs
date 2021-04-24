@@ -9,5 +9,7 @@ namespace App.Factories
     {
         ISystemDifferentialEquations CreateSystemDifferentialEquations();
         IEquation CreateExactSolutionEquation();
+
+        double[] CreateInitialConditions(double startPoint);
     }
 }

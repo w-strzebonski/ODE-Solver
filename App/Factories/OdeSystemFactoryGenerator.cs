@@ -33,7 +33,7 @@ namespace App.Factories
             Console.WriteLine("1. dy/xd = 2 * y * x");
             Console.WriteLine("2. NOT IMPLEMENTED");
             Console.WriteLine("3. d^4y/dx^4 = y^2(x) - x^10 + 4x^9 - 4x^8 - 4x^7 + 8x^6 -4x^4 + 120x - 48");
-            Console.WriteLine("> ");
+            Console.Write("> ");
         }
 
         private static void DisplayErrorMessageAndExit(string message)

@@ -8,9 +8,9 @@ namespace App.System
     {
         public static SolvingSystem Execute()
         {
-            var startingPointInput = ReadInformationFromUser("Insert starting point");
-            var endingPointInput = ReadInformationFromUser("Insert ending point");
-            var stepInput = ReadInformationFromUser("Insert ending point");
+            var startingPointInput = ReadInformationFromUser("Insert starting point value");
+            var endingPointInput = ReadInformationFromUser("Insert ending point value");
+            var stepInput = ReadInformationFromUser("Insert step value");
 
             if (!double.TryParse(startingPointInput, out var startingPoint))
                 DisplayMessageAndExit("Entered value of Starting Point must be a floating-point number");
@@ -30,6 +30,7 @@ namespace App.System
         private static string ReadInformationFromUser(string displayMessage)
         {
             Console.WriteLine(displayMessage);
+            Console.Write("> ");
             return Console.ReadLine();
         }
         

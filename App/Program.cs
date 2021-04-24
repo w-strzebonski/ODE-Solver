@@ -20,20 +20,13 @@ namespace App
 
             var systemOfEquations = odeFatory.CreateSystemDifferentialEquations();
             var exactSolutionEquation = odeFatory.CreateExactSolutionEquation();
+            var initialConditions = odeFatory.CreateInitialConditions(system.StartingPoint);
 
             var solver = new RungeKuttaFehlberg56(systemOfEquations, system.Step);
 
             var numericalResolver = new MainResolver(solver, system.StartingPoint, system.EndingPoint, system.Step);
             var exactResolver = new ExactSolutionResolver(exactSolutionEquation, system.StartingPoint, system.EndingPoint, system.Step);
             var errorCalculator = new NumericalExactErrorCalculator(numericalResolver, exactResolver);
-
-            double[] initialConditions = new double[systemOfEquations.Equations.Length + 1];
-
-            initialConditions[0] = system.StartingPoint;
-            initialConditions[1] = 0d;
-            initialConditions[2] = 0d;
-            initialConditions[3] = 4d;
-            initialConditions[4] = 0d;
 
             numericalResolver.Execute(initialConditions);
             exactResolver.Execute(initialConditions);

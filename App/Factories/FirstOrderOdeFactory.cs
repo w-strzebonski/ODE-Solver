@@ -14,6 +14,14 @@ namespace App.Factories
             return new FirstOrderExactEquation();
         }
 
+        public double[] CreateInitialConditions(double startPoint)
+        {
+            var initialConditions = new double[2];
+            initialConditions[1] = 2d;
+
+            return initialConditions;
+        }
+
         public ISystemDifferentialEquations CreateSystemDifferentialEquations()
         {
             return new FirstOrderSystemEquation();
