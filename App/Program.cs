@@ -25,10 +25,10 @@ namespace App
 
             calculationProcessor.StartCalculations(initialConditions);
 
-            var csvHelper = new CsvFileHelper();
+            var csvHelper = CsvFileHelper.Create();
             csvHelper.SaveCSV(calculationProcessor.CalculationRecords);
 
-            ConsoleDisplayer.DisplayFarewellMessage();
+            csvHelper.DisplaySavingResultMessageAndExit();
         }
     }
 }
