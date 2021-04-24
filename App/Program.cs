@@ -1,12 +1,15 @@
 ﻿using App.Equations;
 using App.Equations.ExactSolutionEquations;
 using App.Factories;
+using App.Helpers;
 using App.Interfaces;
 using App.Models;
 using App.Solvers;
 using App.System;
 using App.SystemDifferentialEquations;
+using CsvHelper;
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace App
@@ -15,28 +18,20 @@ namespace App
     {
         static void Main(string[] args)
         {
-            var system = SolvingSystemInitializer.Execute();
+            var solvingSystem = SolvingSystemInitializer.Execute();
             var odeFatory = OdeSystemFactoryGenerator.Generate();
 
             var systemOfEquations = odeFatory.CreateSystemDifferentialEquations();
             var exactSolutionEquation = odeFatory.CreateExactSolutionEquation();
-            var initialConditions = odeFatory.CreateInitialConditions(system.StartingPoint);
+            var initialConditions = odeFatory.CreateInitialConditions(solvingSystem.StartingPoint);
 
-            var solver = new RungeKuttaFehlberg56(systemOfEquations, system.Step);
+            var solver = new RungeKuttaFehlberg56(systemOfEquations, solvingSystem.Step);
+            var calculationProcessor = new CalculationProcessor(solver, exactSolutionEquation, solvingSystem);
 
-            var numericalResolver = new MainResolver(solver, system.StartingPoint, system.EndingPoint, system.Step);
-            var exactResolver = new ExactSolutionResolver(exactSolutionEquation, system.StartingPoint, system.EndingPoint, system.Step);
-            var errorCalculator = new NumericalExactErrorCalculator(numericalResolver, exactResolver);
+            calculationProcessor.StartCalculations(initialConditions);
 
-            numericalResolver.Execute(initialConditions);
-            exactResolver.Execute(initialConditions);
-            errorCalculator.Calculate();
-
-            var savePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/danesymulacji.txt";
-
-            var resultWriter = new TxtFileSaver(numericalResolver, exactResolver, errorCalculator, savePath);
-
-            resultWriter.Execute();
+            var csvHelper = new CsvFileHelper();
+            csvHelper.SaveCSV(calculationProcessor.CalculationRecords);
         }
     }
 }

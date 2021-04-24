@@ -1,4 +1,5 @@
 ﻿using App.Interfaces;
+using App.System;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,26 +10,19 @@ namespace App.Models
     {
         public ISolver DifferentialSolver { get; private set; }
 
-        public double Step { get; private set; }
-
-        public double StartBoundary { get; private set; }
-
-        public double StopBoundary { get; private set; }
+        private ISolvingSystem _solvingSystem;
 
         public (double, double)[] Data { get; private set; }
 
-        public MainResolver(ISolver solver, double startBoundary, double stopBoundary, double step)
+        public MainResolver(ISolver solver, ISolvingSystem solvingSystem)
         {
             DifferentialSolver = solver;
-            StartBoundary = startBoundary;
-            StopBoundary = stopBoundary;
-            Step = step;
+            _solvingSystem = solvingSystem;
         }
 
         public void Execute(double[] initialConditions)
         {
-            int numberOfSamples = Convert.ToInt32(Math.Abs(StopBoundary - StartBoundary) / Step);
-            Data = new (double, double)[numberOfSamples];
+            Data = new (double, double)[_solvingSystem.NumberOfIterations];
 
             double[] tempData = new double[DifferentialSolver.SystemDifferentialEquations.Equations.Length + 1];
 
@@ -37,16 +31,16 @@ namespace App.Models
                 tempData[i] = initialConditions[i];
             }
 
-            double x = StartBoundary;
+            double x = _solvingSystem.StartingPoint;
 
-            for (int i = 0; i < numberOfSamples; i++)
+            for (int i = 0; i < _solvingSystem.NumberOfIterations; i++)
             {
                 Data[i].Item1 = tempData[0];
                 Data[i].Item2 = tempData[1];
 
                 tempData = DifferentialSolver.Solve(tempData);
 
-                tempData[0] = Math.Round(Data[i].Item1 + Step, 5);
+                tempData[0] = Math.Round(Data[i].Item1 + _solvingSystem.Step, 5);
             }
         }
     }
