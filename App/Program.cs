@@ -1,5 +1,7 @@
 ﻿using App.Equations;
 using App.Equations.ExactSolutionEquations;
+using App.Factories;
+using App.Interfaces;
 using App.Models;
 using App.Solvers;
 using App.System;
@@ -13,24 +15,21 @@ namespace App
     {
         static void Main(string[] args)
         {
-            ISolvingSystem solvingSystem = SolvingSystemInitializer.Execute();
-            
-            
-            var step = 0.0001;
-            var from = 0d;
-            var to = 1d;
+            var system = SolvingSystemInitializer.Execute();
+            var odeFatory = OdeSystemFactoryGenerator.Generate();
 
-            var equations = new FourthOrderSystemEquation();
-            var exacEquation = new FourthOrderExactEquation();
-            var solver = new RungeKuttaFehlberg56(equations, step);
+            var systemOfEquations = odeFatory.CreateSystemDifferentialEquations();
+            var exactSolutionEquation = odeFatory.CreateExactSolutionEquation();
 
-            var numericalResolver = new MainResolver(solver, from, to, step);
-            var exactResolver = new ExactSolutionResolver(exacEquation, from, to, step);
+            var solver = new RungeKuttaFehlberg56(systemOfEquations, system.Step);
+
+            var numericalResolver = new MainResolver(solver, system.StartingPoint, system.EndingPoint, system.Step);
+            var exactResolver = new ExactSolutionResolver(exactSolutionEquation, system.StartingPoint, system.EndingPoint, system.Step);
             var errorCalculator = new NumericalExactErrorCalculator(numericalResolver, exactResolver);
 
-            double[] initialConditions = new double[equations.Equations.Length + 1];
+            double[] initialConditions = new double[systemOfEquations.Equations.Length + 1];
 
-            initialConditions[0] = from;
+            initialConditions[0] = system.StartingPoint;
             initialConditions[1] = 0d;
             initialConditions[2] = 0d;
             initialConditions[3] = 4d;
