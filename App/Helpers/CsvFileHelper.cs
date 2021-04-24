@@ -82,7 +82,7 @@ namespace App.Helpers
         {
             Console.WriteLine("Please enter the full path where the csv file from the calculation will be saved");
             Console.WriteLine("If you don't enter the path, the file will be saved to the desktop");
-            Console.WriteLine("> ");
+            Console.Write("> ");
         }
     }
 }
