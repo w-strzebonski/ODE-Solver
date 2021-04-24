@@ -1,4 +1,5 @@
-﻿using App.Factories;
+﻿using App.Display;
+using App.Factories;
 using App.Helpers;
 using App.Models;
 using App.Solvers;
@@ -10,6 +11,8 @@ namespace App
     {
         static void Main(string[] args)
         {
+            ConsoleDisplayer.DisplayWelcomeMessage();
+
             var solvingSystem = SolvingSystemInitializer.Execute();
             var odeFatory = OdeSystemFactoryGenerator.Generate();
 
@@ -24,6 +27,8 @@ namespace App
 
             var csvHelper = new CsvFileHelper();
             csvHelper.SaveCSV(calculationProcessor.CalculationRecords);
+
+            ConsoleDisplayer.DisplayFarewellMessage();
         }
     }
 }
