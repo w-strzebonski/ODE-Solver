@@ -7,8 +7,9 @@ namespace App.Factories
         public static IOdeSystemFactory Generate()
         {
             DisplayChooseDiffEquationMessage();
-
             var input = Console.ReadLine();
+            Console.WriteLine();
+
             if (!int.TryParse(input, out var inputAsNumber) || inputAsNumber > 3 || inputAsNumber < 1)
                 DisplayErrorMessageAndExit("Entered input must be a number between 1 and 3!");
 
