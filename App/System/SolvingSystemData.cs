@@ -2,7 +2,7 @@
 
 namespace App.System
 {
-    class SolvingSystem : ISolvingSystem
+    class SolvingSystemData : ISolvingSystemData
     {
         public double StartingPoint { get; private set; }
 
@@ -12,7 +12,7 @@ namespace App.System
 
         public int NumberOfIterations { get; private set; }
 
-        public SolvingSystem()
+        public SolvingSystemData()
         {
             StartingPoint = 0;
             EndingPoint = 1;
@@ -20,7 +20,7 @@ namespace App.System
             NumberOfIterations = CalculateNumberOfIterations();
         }
 
-        public SolvingSystem(double startingPoint, double endingPoint, double step)
+        public SolvingSystemData(double startingPoint, double endingPoint, double step)
         {
             StartingPoint = startingPoint;
             EndingPoint = endingPoint;

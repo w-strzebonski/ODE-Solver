@@ -2,9 +2,9 @@
 
 namespace App.System
 {
-    static class SolvingSystemInitializer
+    static class SolvingSystemDataInitializer
     {
-        public static SolvingSystem Execute()
+        public static SolvingSystemData Execute()
         {
             var startingPointInput = ReadInformationFromUser("Insert starting point value");
             var endingPointInput = ReadInformationFromUser("Insert ending point value");
@@ -22,7 +22,7 @@ namespace App.System
             if (startingPoint > endingPoint)
                 DisplayMessageAndExit("Entered value of Starting Point must be lesser than Ending Point");
 
-            return new SolvingSystem(startingPoint, endingPoint, step);
+            return new SolvingSystemData(startingPoint, endingPoint, step);
         }
 
         private static string ReadInformationFromUser(string displayMessage)

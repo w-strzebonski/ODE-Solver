@@ -10,9 +10,9 @@ namespace App.Models
 
         private ISolver _numericalSolver;
         private IEquation _exactSolutionEquation;
-        private ISolvingSystem _solvingSystem;
+        private ISolvingSystemData _solvingSystem;
 
-        public CalculationProcessor(ISolver numericalSolver, IEquation exactSolutionEquation, ISolvingSystem solvingSystem)
+        public CalculationProcessor(ISolver numericalSolver, IEquation exactSolutionEquation, ISolvingSystemData solvingSystem)
         {
             _numericalSolver = numericalSolver;
             _exactSolutionEquation = exactSolutionEquation;

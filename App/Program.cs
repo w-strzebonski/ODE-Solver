@@ -13,7 +13,7 @@ namespace App
         {
             ConsoleDisplayer.DisplayWelcomeMessage();
 
-            var solvingSystem = SolvingSystemInitializer.Execute();
+            var solvingSystem = SolvingSystemDataInitializer.Execute();
             var odeFatory = OdeSystemFactoryGenerator.Generate();
 
             var systemOfEquations = odeFatory.CreateSystemDifferentialEquations();
