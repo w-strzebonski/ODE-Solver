@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace App.Display
 {
@@ -9,7 +7,7 @@ namespace App.Display
         public static void DisplayWelcomeMessage()
         {
             Console.WriteLine("*****************************");
-            Console.WriteLine("*         CREADED BY        *");
+            Console.WriteLine("*         CREATED BY        *");
             Console.WriteLine("* WOJCIECH STRZEBOŃSKI 2021 *");
             Console.WriteLine("*****************************");
             Console.WriteLine();
@@ -20,12 +18,6 @@ namespace App.Display
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
-        }
-
-        public static void DisplayFarewellMessage()
-        {
-            Console.WriteLine("The calculations were correctly saved in the indicated location! Press any key to exit...");
-            Console.ReadKey();
         }
     }
 }

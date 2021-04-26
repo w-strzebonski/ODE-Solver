@@ -4,13 +4,13 @@ namespace App.System
 {
     class SolvingSystemData : ISolvingSystemData
     {
-        public double StartingPoint { get; private set; }
+        public double StartingPoint { get; }
 
-        public double EndingPoint { get; private set; }
+        public double EndingPoint { get; }
 
-        public double Step { get; private set; }
+        public double Step { get; }
 
-        public int NumberOfIterations { get; private set; }
+        public int NumberOfIterations { get; }
 
         public SolvingSystemData()
         {

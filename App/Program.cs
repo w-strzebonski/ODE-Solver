@@ -1,8 +1,8 @@
 ﻿using App.Display;
-using App.Factories;
-using App.Helpers;
-using App.Models;
-using App.SystemDifferentialEquations;
+using App.Factory;
+using App.Model;
+using App.Saver;
+using App.Solver;
 using App.System;
 
 namespace App
@@ -18,15 +18,15 @@ namespace App
 
             var systemOfEquations = odeFactory.CreateSystemDifferentialEquations();
             var exactSolutionEquation = odeFactory.CreateExactSolutionEquation();
-            var initialConditions = odeFactory.CreateInitialConditions(systemData.StartingPoint);
+            var initialConditions = odeFactory.CreateInitialConditions();
 
             var solver = new RungeKuttaFehlberg56(systemOfEquations, systemData.Step);
             var calculationProcessor = new CalculationProcessor(solver, exactSolutionEquation, systemData);
 
             calculationProcessor.StartCalculations(initialConditions);
 
-            var csvHelper = CsvFileHelper.Create();
-            csvHelper.SaveCSV(calculationProcessor.CalculationRecords);
+            var csvHelper = CsvSaver.Create();
+            csvHelper.Save(calculationProcessor.CalculationRecords);
 
             csvHelper.DisplaySavingResultMessageAndExit();
         }
