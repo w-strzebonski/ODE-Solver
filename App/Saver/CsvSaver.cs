@@ -7,13 +7,13 @@ using CsvHelper;
 
 namespace App.Saver
 {
-    class CsvSaver
+    class CsvSaver : ISaver
     {
+        public string SaveErrorMessage { get; private set; }
         public string Path { get; }
 
         private readonly string _desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         private readonly string _fileName = "calculationData.csv";
-        private string _exceptionMessage = string.Empty;
 
         public static CsvSaver Create()
         {
@@ -37,31 +37,11 @@ namespace App.Saver
             }
             catch (Exception e)
             {
-                _exceptionMessage = e.Message;
+                SaveErrorMessage = e.Message;
                 return false;
             }
 
             return true;
-        }
-
-        public void DisplaySavingResultMessageAndExit()
-        {
-            int statusCode;
-            string message;
-
-            if (string.IsNullOrEmpty(_exceptionMessage))
-            {
-                message = "The calculations were correctly saved in the indicated location! Press any key to exit...";
-                statusCode = 0;
-            }
-            else
-            {
-                message = $"Error! {_exceptionMessage}";
-                statusCode = -1;
-            }
-
-            Console.WriteLine(message);
-            Environment.Exit(statusCode);
         }
 
         private CsvSaver()

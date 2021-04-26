@@ -3,7 +3,7 @@
 namespace App.Model
 
 {
-    struct CalculationRecord
+    public struct CalculationRecord
     {
         [Name("Calculation point value")]
         public double XValue { get; set; }

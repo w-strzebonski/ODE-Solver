@@ -1,4 +1,5 @@
-﻿using App.Display;
+﻿using System;
+using App.Display;
 using App.Factory;
 using App.Model;
 using App.Saver;
@@ -25,10 +26,12 @@ namespace App
 
             calculationProcessor.StartCalculations(initialConditions);
 
-            var csvHelper = CsvSaver.Create();
-            csvHelper.Save(calculationProcessor.CalculationRecords);
+            var saver = SaverFactory.CreateCsvSaver();
+            var isSavedOk = saver.Save(calculationProcessor.CalculationRecords);
 
-            csvHelper.DisplaySavingResultMessageAndExit();
+            ConsoleDisplayer.DisplayMessage(isSavedOk
+                ? "The calculations were correctly saved in the indicated location! Press any key to exit..."
+                : $"Error! {saver.SaveErrorMessage}");
         }
     }
 }

@@ -19,5 +19,10 @@ namespace App.Display
             Console.ReadKey();
             Console.Clear();
         }
+
+        public static void DisplayMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }
