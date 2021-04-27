@@ -8,8 +8,8 @@ namespace App.Equation.ExactSolutionEquation
         {
             double x = input[0];
 
-            return Math.Exp(-x) * Math.Sin(Math.Sqrt(2) * x) * Math.Sqrt(2) / 2 + Math.Exp(-x) * Math.Cos(Math.Sqrt(2) * x) / 4 -
-                Math.Cos(x) / 4 + Math.Sin(x) / 4;
+            return Math.Exp(-x) * Math.Sin(Math.Sqrt(2) * x) * Math.Sqrt(2) / 2 + Math.Exp(-x) * (Math.Cos(Math.Sqrt(2) * x) 
+                - Math.Cos(x) + Math.Sin(x)) / 4;
         }
     }
 }
