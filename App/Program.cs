@@ -19,7 +19,7 @@ namespace App
 
             var systemOfEquations = odeFactory.CreateSystemDifferentialEquations();
             var exactSolutionEquation = odeFactory.CreateExactSolutionEquation();
-            var initialConditions = odeFactory.CreateInitialConditions();
+            var initialConditions = odeFactory.CreateInitialConditions(systemData.StartingPoint);
 
             var solver = new RungeKuttaFehlberg56(systemOfEquations, systemData.Step);
             var calculationProcessor = new CalculationProcessor(solver, exactSolutionEquation, systemData);

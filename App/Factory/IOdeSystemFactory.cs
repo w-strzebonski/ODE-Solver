@@ -8,6 +8,6 @@ namespace App.Factory
         ISystemDifferentialEquations CreateSystemDifferentialEquations();
         IEquation CreateExactSolutionEquation();
 
-        double[] CreateInitialConditions();
+        double[] CreateInitialConditions(double startingPoint);
     }
 }

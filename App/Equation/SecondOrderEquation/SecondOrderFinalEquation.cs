@@ -11,7 +11,7 @@ namespace App.Equation.SecondOrderEquation
             double y2 = input[2];
 
             //dy2/dx = ...
-            return Math.Exp(x) * (Math.Pow(y1, 2) + y1 * y2) - 2 * Math.Exp(-x);
+            return Math.Sin(x) - 2 * y2 - 3 * y1;
         }
     }
 }

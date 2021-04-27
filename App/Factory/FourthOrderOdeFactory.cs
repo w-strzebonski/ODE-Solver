@@ -11,9 +11,10 @@ namespace App.Factory
             return new FourthOrderExactEquation();
         }
 
-        public double[] CreateInitialConditions()
+        public double[] CreateInitialConditions(double startingPoint)
         {
             var initialConditions = new double[5];
+            initialConditions[0] = startingPoint;
             initialConditions[1] = 0d;
             initialConditions[2] = 0d;
             initialConditions[3] = 4d;
