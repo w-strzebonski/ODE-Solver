@@ -2,9 +2,9 @@
 {
     interface ISolvingSystemData
     {
-        public double StartingPoint { get; }
-        public double EndingPoint { get; }
-        public double Step { get; }
-        public int NumberOfIterations { get; }
+        double StartingPoint { get; }
+        double EndingPoint { get; }
+        double Step { get; }
+        int NumberOfIterations { get; }
     }
 }
