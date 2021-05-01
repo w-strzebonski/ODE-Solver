@@ -5,7 +5,7 @@ namespace App.Solver
 {
     class RungeKuttaFehlberg56 : ISolver
     {
-        private double[] _k1, _k2, _k3, _k4, _k5, _k6;
+        private double[] _g1, _g2, _g3, _g4, _g5, _g6;
         
         private readonly ISystemDifferentialEquations _systemOfEquations;
         
@@ -29,22 +29,22 @@ namespace App.Solver
 
         public double[] Solve(double[] input)
         {
-            _k1 = _systemOfEquations.Calculate(input);
+            _g1 = _systemOfEquations.Calculate(input);
 
             double[] shiftedValue = PrepareShiftedValuesForK2(input);
-            _k2 = _systemOfEquations.Calculate(shiftedValue);
+            _g2 = _systemOfEquations.Calculate(shiftedValue);
 
             shiftedValue = PrepareShiftedValuesForK3(input);
-            _k3 = _systemOfEquations.Calculate(shiftedValue);
+            _g3 = _systemOfEquations.Calculate(shiftedValue);
 
             shiftedValue = PrepareShiftedValuesForK4(input);
-            _k4 = _systemOfEquations.Calculate(shiftedValue);
+            _g4 = _systemOfEquations.Calculate(shiftedValue);
 
             shiftedValue = PrepareShiftedValuesForK5(input);
-            _k5 = _systemOfEquations.Calculate(shiftedValue);
+            _g5 = _systemOfEquations.Calculate(shiftedValue);
 
             shiftedValue = PrepareShiftedValuesForK6(input);
-            _k6 = _systemOfEquations.Calculate(shiftedValue);
+            _g6 = _systemOfEquations.Calculate(shiftedValue);
 
             return ReturnCalculatedValues(input);
         }
@@ -96,7 +96,7 @@ namespace App.Solver
 
             for (int i = 1; i < input.Count; i++)
             {
-                result[i] = input[i] + _step * _cCoefficients[1, 0] * _k1[i];
+                result[i] = input[i] + _step * _cCoefficients[1, 0] * _g1[i];
             }
 
             return result;
@@ -110,8 +110,8 @@ namespace App.Solver
 
             for (int i = 1; i < input.Count; i++)
             {
-                result[i] = input[i] + _step * (_cCoefficients[2, 0] * _k1[i] + 
-                                                _cCoefficients[2, 1] * _k2[i]);
+                result[i] = input[i] + _step * (_cCoefficients[2, 0] * _g1[i] + 
+                                                _cCoefficients[2, 1] * _g2[i]);
             }
 
             return result;
@@ -125,9 +125,9 @@ namespace App.Solver
 
             for (int i = 1; i < input.Count; i++)
             {
-                result[i] = input[i] + _step * (_cCoefficients[3, 0] * _k1[i] + 
-                                                _cCoefficients[3, 1] * _k2[i] + 
-                                                _cCoefficients[3, 2] * _k3[i]);
+                result[i] = input[i] + _step * (_cCoefficients[3, 0] * _g1[i] + 
+                                                _cCoefficients[3, 1] * _g2[i] + 
+                                                _cCoefficients[3, 2] * _g3[i]);
             }
 
             return result;
@@ -141,10 +141,10 @@ namespace App.Solver
 
             for (int i = 1; i < input.Count; i++)
             {
-                result[i] = input[i] + _step * (_cCoefficients[4, 0] * _k1[i] + 
-                                                _cCoefficients[4, 1] * _k2[i] + 
-                                                _cCoefficients[4, 2] * _k3[i] + 
-                                                _cCoefficients[4, 3] * _k4[i]);
+                result[i] = input[i] + _step * (_cCoefficients[4, 0] * _g1[i] + 
+                                                _cCoefficients[4, 1] * _g2[i] + 
+                                                _cCoefficients[4, 2] * _g3[i] + 
+                                                _cCoefficients[4, 3] * _g4[i]);
             }
 
             return result;
@@ -158,11 +158,11 @@ namespace App.Solver
 
             for (int i = 1; i < input.Count; i++)
             {
-                result[i] = input[i] + _step * (_cCoefficients[5, 0] * _k1[i] + 
-                                                _cCoefficients[5, 1] * _k2[i] + 
-                                                _cCoefficients[5, 2] * _k3[i] + 
-                                                _cCoefficients[5, 3] * _k4[i] + 
-                                                _cCoefficients[5, 4] * _k5[i]);
+                result[i] = input[i] + _step * (_cCoefficients[5, 0] * _g1[i] + 
+                                                _cCoefficients[5, 1] * _g2[i] + 
+                                                _cCoefficients[5, 2] * _g3[i] + 
+                                                _cCoefficients[5, 3] * _g4[i] + 
+                                                _cCoefficients[5, 4] * _g5[i]);
             }
 
             return result;
@@ -176,12 +176,12 @@ namespace App.Solver
 
             for (int i = 1; i < result.Length; i++)
             {
-                result[i] = input[i] + _step * (_aCoefficients[0] * _k1[i] + 
-                                                _aCoefficients[1] * _k2[i] +
-                                                _aCoefficients[2] * _k3[i] +
-                                                _aCoefficients[3] * _k4[i] + 
-                                                _aCoefficients[4] * _k5[i] + 
-                                                _aCoefficients[5] * _k6[i]);
+                result[i] = input[i] + _step * (_aCoefficients[0] * _g1[i] + 
+                                                _aCoefficients[1] * _g2[i] +
+                                                _aCoefficients[2] * _g3[i] +
+                                                _aCoefficients[3] * _g4[i] + 
+                                                _aCoefficients[4] * _g5[i] + 
+                                                _aCoefficients[5] * _g6[i]);
             }
 
             return result;
