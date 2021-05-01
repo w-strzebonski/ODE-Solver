@@ -4,7 +4,7 @@ namespace App.System
 {
     static class SolvingSystemDataInitializer
     {
-        public static SolvingSystemData Execute()
+        public static ISolvingSystemData Execute()
         {
             var startingPointInput = ReadInformationFromUser("Insert the beginning of calculation interval");
             var endingPointInput = ReadInformationFromUser("Insert the end of calculation interval");
