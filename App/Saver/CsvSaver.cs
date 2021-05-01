@@ -56,8 +56,8 @@ namespace App.Saver
 
         private static void DisplayCreationMessage()
         {
-            Console.WriteLine("Please enter the full path where the csv file from the calculation will be saved");
-            Console.WriteLine("If you don't enter the path, the file will be saved to the desktop");
+            Console.WriteLine("Please enter the full path where the CSV file from the calculation will be saved.");
+            Console.WriteLine("If you don't enter the path, the file will be saved to the desktop!");
             Console.Write("> ");
         }
     }
