@@ -22,7 +22,7 @@ namespace App.Model
             CalculationRecords = new CalculationRecord[_solvingSystem.NumberOfIterations];
         }
 
-        public bool StartCalculations(double[] initialConditions)
+        public void StartCalculations(double[] initialConditions)
         {
             var tempData = new double[initialConditions.Length];
 
@@ -43,8 +43,6 @@ namespace App.Model
                 tempData = _numericalSolver.Solve(tempData);
                 tempData[0] = Math.Round(xValue + _solvingSystem.Step, 5);
             }
-
-            return false;
         }
     }
 }
