@@ -31,19 +31,19 @@ namespace App.Solver
         {
             _g1 = _systemOfEquations.Calculate(input);
 
-            double[] shiftedValue = PrepareShiftedValuesForK2(input);
+            double[] shiftedValue = PrepareShiftedValuesForG2(input);
             _g2 = _systemOfEquations.Calculate(shiftedValue);
 
-            shiftedValue = PrepareShiftedValuesForK3(input);
+            shiftedValue = PrepareShiftedValuesForG3(input);
             _g3 = _systemOfEquations.Calculate(shiftedValue);
 
-            shiftedValue = PrepareShiftedValuesForK4(input);
+            shiftedValue = PrepareShiftedValuesForG4(input);
             _g4 = _systemOfEquations.Calculate(shiftedValue);
 
-            shiftedValue = PrepareShiftedValuesForK5(input);
+            shiftedValue = PrepareShiftedValuesForG5(input);
             _g5 = _systemOfEquations.Calculate(shiftedValue);
 
-            shiftedValue = PrepareShiftedValuesForK6(input);
+            shiftedValue = PrepareShiftedValuesForG6(input);
             _g6 = _systemOfEquations.Calculate(shiftedValue);
 
             return ReturnCalculatedValues(input);
@@ -88,7 +88,7 @@ namespace App.Solver
             _cCoefficients[5, 4] = -11d / 40d;
         }
 
-        private double[] PrepareShiftedValuesForK2(IReadOnlyList<double> input)
+        private double[] PrepareShiftedValuesForG2(IReadOnlyList<double> input)
         {
             double[] result = new double[input.Count];
 
@@ -102,7 +102,7 @@ namespace App.Solver
             return result;
         }
 
-        private double[] PrepareShiftedValuesForK3(IReadOnlyList<double> input)
+        private double[] PrepareShiftedValuesForG3(IReadOnlyList<double> input)
         {
             double[] result = new double[input.Count];
 
@@ -117,7 +117,7 @@ namespace App.Solver
             return result;
         }
 
-        private double[] PrepareShiftedValuesForK4(IReadOnlyList<double> input)
+        private double[] PrepareShiftedValuesForG4(IReadOnlyList<double> input)
         {
             double[] result = new double[input.Count];
 
@@ -133,7 +133,7 @@ namespace App.Solver
             return result;
         }
 
-        private double[] PrepareShiftedValuesForK5(IReadOnlyList<double> input)
+        private double[] PrepareShiftedValuesForG5(IReadOnlyList<double> input)
         {
             double[] result = new double[input.Count];
 
@@ -150,7 +150,7 @@ namespace App.Solver
             return result;
         }
 
-        private double[] PrepareShiftedValuesForK6(IReadOnlyList<double> input)
+        private double[] PrepareShiftedValuesForG6(IReadOnlyList<double> input)
         {
             double[] result = new double[input.Count];
 
