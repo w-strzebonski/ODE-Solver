@@ -1,7 +1,6 @@
 ﻿using App.Equation;
 using App.Equation.ExactSolutionEquation;
 using App.SystemDifferentialEquation;
-using NotImplementedException = System.NotImplementedException;
 
 namespace App.Factory
 {
