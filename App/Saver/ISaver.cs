@@ -5,7 +5,7 @@ namespace App.Saver
 {
     public interface ISaver
     {
-        public string SaveErrorMessage { get; }
+        string SaveErrorMessage { get; }
         bool Save(IEnumerable<CalculationRecord> data);
     }
 }
