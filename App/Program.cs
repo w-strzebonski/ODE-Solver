@@ -32,6 +32,8 @@ namespace App
             ConsoleDisplayer.DisplayMessage(isSavedOk
                 ? "The calculations were correctly saved in the indicated location! Press any key to exit..."
                 : $"Error! {saver.SaveErrorMessage}");
+
+            Console.ReadKey();
         }
     }
 }
