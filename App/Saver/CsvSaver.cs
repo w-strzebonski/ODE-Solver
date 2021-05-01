@@ -13,7 +13,7 @@ namespace App.Saver
         public string Path { get; }
 
         private readonly string _desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        private readonly string _fileName = "calculationData.csv";
+        private readonly string _fileName = "CalculationData.csv";
 
         public static CsvSaver Create()
         {
