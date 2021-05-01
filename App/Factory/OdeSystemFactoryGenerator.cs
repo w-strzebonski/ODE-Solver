@@ -34,6 +34,7 @@ namespace App.Factory
         private static void DisplayErrorMessageAndExit(string message)
         {
             Console.WriteLine(message);
+            Console.ReadKey();
             Environment.Exit(-1);
         }
     }
