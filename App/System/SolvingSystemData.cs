@@ -30,7 +30,7 @@ namespace App.System
 
         private int CalculateNumberOfIterations()
         {
-            int numberOfIterations = Convert.ToInt32(Math.Abs(EndingPoint - StartingPoint) / Step);
+            int numberOfIterations = Convert.ToInt32(Math.Abs(EndingPoint - StartingPoint) / Step) + 1;
 
             return numberOfIterations;
         }
