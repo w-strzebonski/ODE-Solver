@@ -2,7 +2,7 @@
 
 namespace App.Factory
 {
-    static class OdeSystemFactoryGenerator
+    public static class OdeSystemFactoryGenerator
     {
         public static IOdeSystemFactory Generate()
         {

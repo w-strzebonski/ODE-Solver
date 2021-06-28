@@ -1,6 +1,6 @@
 ﻿namespace App.Solver
 {
-    interface ISolver
+    public interface ISolver
     {
         double[] Solve(double[] input);
     }

@@ -2,7 +2,7 @@
 
 namespace App.System
 {
-    static class SolvingSystemDataInitializer
+    public static class SolvingSystemDataInitializer
     {
         public static ISolvingSystemData Execute()
         {

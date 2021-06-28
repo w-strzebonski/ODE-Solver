@@ -1,6 +1,6 @@
 ﻿namespace App.Equation.FirstOrderEquation
 {
-    class FirstOrderFinalEquation : IEquation
+    public class FirstOrderFinalEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {

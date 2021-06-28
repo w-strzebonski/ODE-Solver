@@ -5,7 +5,7 @@ using App.System;
 
 namespace App.Model
 {
-    class CalculationProcessor
+    public class CalculationProcessor
     {
         public CalculationRecord[] CalculationRecords { get; }
 

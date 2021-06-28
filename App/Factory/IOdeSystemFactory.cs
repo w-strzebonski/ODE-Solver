@@ -3,7 +3,7 @@ using App.SystemDifferentialEquation;
 
 namespace App.Factory
 {
-    interface IOdeSystemFactory
+    public interface IOdeSystemFactory
     {
         ISystemDifferentialEquations CreateSystemDifferentialEquations();
         IEquation CreateExactSolutionEquation();

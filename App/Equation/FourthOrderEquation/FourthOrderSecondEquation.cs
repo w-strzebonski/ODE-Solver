@@ -1,6 +1,6 @@
 ﻿namespace App.Equation.FourthOrderEquation
 {
-    class FourthOrderSecondEquation : IEquation
+    public class FourthOrderSecondEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {

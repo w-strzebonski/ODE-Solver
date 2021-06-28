@@ -1,6 +1,6 @@
 ﻿namespace App.System
 {
-    interface ISolvingSystemData
+    public interface ISolvingSystemData
     {
         double StartingPoint { get; }
         double EndingPoint { get; }

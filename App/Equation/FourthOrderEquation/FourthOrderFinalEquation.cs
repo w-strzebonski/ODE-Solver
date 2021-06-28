@@ -2,7 +2,7 @@
 
 namespace App.Equation.FourthOrderEquation
 {
-    class FourthOrderFinalEquation : IEquation
+    public class FourthOrderFinalEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {

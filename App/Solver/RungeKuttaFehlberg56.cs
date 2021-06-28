@@ -3,7 +3,7 @@ using App.SystemDifferentialEquation;
 
 namespace App.Solver
 {
-    class RungeKuttaFehlberg56 : ISolver
+    public class RungeKuttaFehlberg56 : ISolver
     {
         private double[] _g1, _g2, _g3, _g4, _g5, _g6;
         

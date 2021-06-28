@@ -1,6 +1,6 @@
 ﻿namespace App.Equation
 {
-    interface IEquation
+    public interface IEquation
     {
         double CalculateResult(double[] input);
     }

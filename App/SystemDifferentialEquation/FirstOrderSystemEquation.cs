@@ -3,7 +3,7 @@ using App.Equation.FirstOrderEquation;
 
 namespace App.SystemDifferentialEquation
 {
-    class FirstOrderSystemEquation : ISystemDifferentialEquations
+    public class FirstOrderSystemEquation : ISystemDifferentialEquations
     {
         public IEquation[] Equations { get; private set; }
 

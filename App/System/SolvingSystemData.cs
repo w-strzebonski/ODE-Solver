@@ -2,7 +2,7 @@
 
 namespace App.System
 {
-    class SolvingSystemData : ISolvingSystemData
+    public class SolvingSystemData : ISolvingSystemData
     {
         public double StartingPoint { get; }
 

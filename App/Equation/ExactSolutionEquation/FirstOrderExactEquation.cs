@@ -2,7 +2,7 @@
 
 namespace App.Equation.ExactSolutionEquation
 {
-    class FirstOrderExactEquation : IEquation
+    public class FirstOrderExactEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {

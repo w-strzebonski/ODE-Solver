@@ -2,7 +2,7 @@
 
 namespace App.Display
 {
-    static class ConsoleDisplayer
+    public static class ConsoleDisplayer
     {
         public static void DisplayWelcomeMessage()
         {

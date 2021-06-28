@@ -2,7 +2,7 @@
 
 namespace App.Equation.SecondOrderEquation
 {
-    class SecondOrderFinalEquation : IEquation
+    public class SecondOrderFinalEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {

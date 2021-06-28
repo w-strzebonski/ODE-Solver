@@ -2,7 +2,7 @@
 
 namespace App.SystemDifferentialEquation
 {
-    interface ISystemDifferentialEquations
+    public interface ISystemDifferentialEquations
     {
         IEquation[] Equations { get; }
 

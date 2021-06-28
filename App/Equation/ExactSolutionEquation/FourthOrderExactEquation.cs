@@ -2,7 +2,7 @@
 
 namespace App.Equation.ExactSolutionEquation
 {
-    class FourthOrderExactEquation : IEquation
+    public class FourthOrderExactEquation : IEquation
     {
         public double CalculateResult(double[] input)
         {

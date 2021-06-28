@@ -4,7 +4,7 @@ using App.SystemDifferentialEquation;
 
 namespace App.Factory
 {
-    class SecondOrderOdeFactory : IOdeSystemFactory
+    public class SecondOrderOdeFactory : IOdeSystemFactory
     {
         public ISystemDifferentialEquations CreateSystemDifferentialEquations()
         {

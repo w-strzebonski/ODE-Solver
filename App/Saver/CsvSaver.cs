@@ -7,7 +7,7 @@ using CsvHelper;
 
 namespace App.Saver
 {
-    class CsvSaver : ISaver
+    public class CsvSaver : ISaver
     {
         public string SaveErrorMessage { get; private set; }
         public string Path { get; }
