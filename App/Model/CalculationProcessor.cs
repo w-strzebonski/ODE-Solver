@@ -33,10 +33,10 @@ namespace App.Model
 
             for (int i = 0; i < _solvingSystem.NumberOfIterations; i++)
             {
-                double xValue = tempData[0];
-                double calculatedSolverValue = tempData[1];
-                double exactSolutionValue = _exactSolutionEquation.CalculateResult(new double[] { xValue });
-                double error = calculatedSolverValue - exactSolutionValue;
+                var xValue = tempData[0];
+                var calculatedSolverValue = tempData[1];
+                var exactSolutionValue = _exactSolutionEquation.CalculateResult(new[] { xValue });
+                var error = calculatedSolverValue - exactSolutionValue;
 
                 CalculationRecords[i] = new CalculationRecord(xValue, calculatedSolverValue, exactSolutionValue, error);
                 
